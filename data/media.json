@@ -1,0 +1,122 @@
+{
+    "jim knopf und lukas der lokomotivführer": {
+        "type": "movie",
+        "name": "Jim Knopf und Lukas der Lokomotivführer",
+        "versions": [
+            "/Deutsch.mp4"
+        ],
+        "description": "Kleine Töf Töf fährt um Drache zu flanken",
+        "banner": "img.png",
+        "length": "1:53h",
+        "path": "V:/Movielibrary\\Jim Knopf und Lukas Puppenkiste"
+    },
+    "jim knopf und lukas": {
+        "type": "series",
+        "name": "Jim Knopf und Lukas",
+        "seasons": {
+            "1": {
+                "episodes": [
+                    {
+                        "name": "Folge 1",
+                        "path": "/D4F1.mp4",
+                        "description": "Töf Töf fährt los"
+                    },
+                    {
+                        "name": "Folge 1",
+                        "path": "/D4F2.mp4",
+                        "description": "Töf Töf fährt immer noch"
+                    }
+                ]
+            }
+        },
+        "description": "Süße Töf Töf mit große Rauch",
+        "length": "1:30h",
+        "banner": "/img.jpg",
+        "path": "V:/Movielibrary\\Jim Knopf und Lukas Zeichentrik"
+    },
+    "nummer 5 lebt": {
+        "type": "movie",
+        "name": "Nummer 5 Lebt",
+        "versions": [
+            "/Deutsch.mp4",
+            "/Englisch.mp4"
+        ],
+        "description": "Süße Roboter mit große Herz",
+        "length": "1:30h",
+        "banner": "/img.png",
+        "path": "V:/Movielibrary\\Nummer 5 Lebt"
+    },
+    "robbie tobbie und das fliewatüüt": {
+        "type": "series",
+        "name": "Robbie Tobbie und das Fliewatüüt",
+        "seasons": {
+            "1": {
+                "episodes": [
+                    {
+                        "name": "Folge 1",
+                        "path": "/Folge 1.mp4",
+                        "description": "Robbie kommt und ab gehts"
+                    },
+                    {
+                        "name": "Folge 2",
+                        "path": "/Folge 2.mp4",
+                        "description": "Rob und Tob Staatsfeind Nr.1"
+                    },
+                    {
+                        "name": "Folge 3",
+                        "path": "/Folge 3.mp4",
+                        "description": "Rob muss Treppe hoch und ist Hausmann"
+                    },
+                    {
+                        "name": "Folge 4",
+                        "path": "/Folge 4.mp4",
+                        "description": "Fucking Delfin zieht dicke brummer zum Nordpol??"
+                    },
+                    {
+                        "name": "Folge 5",
+                        "path": "/Folge 5.mp4",
+                        "description": "Fucking Rob stirbt fast aber mit kraft der Liebe alles palletto"
+                    },
+                    {
+                        "name": "Folge 6",
+                        "path": "/Folge 6.mp4",
+                        "description": "Loch"
+                    },
+                    {
+                        "name": "Folge 7",
+                        "path": "/Folge 7.mp4",
+                        "description": "Lange Loch"
+                    },
+                    {
+                        "name": "Folge 8",
+                        "path": "/Folge 8.mp4",
+                        "description": "Gruselige Schloss aber Rob rockt Rettungsring"
+                    },
+                    {
+                        "name": "Folge 9",
+                        "path": "/Folge 9.mp4",
+                        "description": "Süße Maus aber gruselige Blechmann"
+                    },
+                    {
+                        "name": "Folge 10",
+                        "path": "/Folge 10.mp4",
+                        "description": "Rob angy weil Mann mit große Nase nicht so clever"
+                    },
+                    {
+                        "name": "Folge 11",
+                        "path": "/Folge 11.mp4",
+                        "description": "Rob zischt ab"
+                    },
+                    {
+                        "name": "Making Of",
+                        "path": "/Making of.mp4",
+                        "description": "guckst du wie klein alles"
+                    }
+                ]
+            }
+        },
+        "description": "Reise mit Robo und Menscho und Fliegotütofahri",
+        "banner": "/img.jpg",
+        "path": "V:/Movielibrary\\Robbie Tobbie und das Fliewatüüt"
+    }
+}
