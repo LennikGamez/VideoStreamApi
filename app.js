@@ -46,6 +46,10 @@ function clearSubtitleString(sub){
     return sub.replace("/", "").replace(".vtt", "");
 }
 
+function isALink(url){
+    return url.startsWith("http") || url.startsWith("https");
+}
+
 
 app.get('/reload', function(req, res){
     runPythonScript(res);
@@ -61,14 +65,30 @@ app.get("/media", function(req, res){
 
 
 app.get("/poster/:media", function (req, res){
+    res.setHeader("Access-Control-Allow-Origin", '*')
     try{
         const obj = data[req.params.media];
+
+        // banner is a link
+        if(isALink(obj.banner)){
+            res.redirect(obj.banner);
+            return;
+        }
+        // banner is a file
         const path = obj['path']+"/"+obj['banner'];
+        
+        // default image if banner is not set
+        if(!fs.existsSync(path)){
+            const defaultPath = fs.realpathSync(__dirname) + "/assets/default.png";
+            res.sendFile(defaultPath);
+            return;
+        }
+        
         res.sendFile(path);
     }catch(err){
         if(!err instanceof TypeError){
             console.log(err);
-            res.status(404).send("Not Found");
+            res.status(500).send("Internal Server Error");
         }
     }
 })
