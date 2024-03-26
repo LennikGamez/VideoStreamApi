@@ -42,6 +42,10 @@ function runPythonScript(res){
     });
 }
 
+function clearSubtitleString(sub){
+    return sub.replace("/", "").replace(".vtt", "");
+}
+
 
 app.get('/reload', function(req, res){
     runPythonScript(res);
@@ -149,6 +153,23 @@ app.get("/series/:media/:season/:episode", function (req, res){
 
 });
 
+app.get('/subtitles/:media', function(req, res){
+    res.setHeader("Access-Control-Allow-Origin", '*')
+    const media = req.params.media;
+    const subtitles = data[media].subtitles;
+
+    if (data[media].subtitles == undefined){
+        res.send({"error": "No subtitles available"});
+        return;
+    }
+    var subdata = {}
+
+    subtitles.forEach(sub => {
+        subdata[clearSubtitleString(sub)] = fs.readFileSync(data[media].path+sub, encode='utf-8');
+    });
+
+    res.send(subdata);
+});
 
 
 function streamVideo(videoPath, req, res){
