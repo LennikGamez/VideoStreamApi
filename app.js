@@ -61,9 +61,16 @@ app.get("/media", function(req, res){
 
 
 app.get("/poster/:media", function (req, res){
-    const obj = data[req.params.media];
-    const path = obj['path']+"/"+obj['banner'];
-    res.sendFile(path);
+    try{
+        const obj = data[req.params.media];
+        const path = obj['path']+"/"+obj['banner'];
+        res.sendFile(path);
+    }catch(err){
+        if(!err instanceof TypeError){
+            console.log(err);
+            res.status(404).send("Not Found");
+        }
+    }
 })
 
 
