@@ -97,7 +97,6 @@ app.get("/poster/:media", function (req, res){
 
 
 app.get("/movie/:media/:version", function (req, res){
-
     const media = req.params.media;
     const version = req.params.version
     const range = req.headers.range;
@@ -105,9 +104,14 @@ app.get("/movie/:media/:version", function (req, res){
     //     res.status(400).send("Requires Range header");
     // }
 
-
     const videoPath = data[media].path + data[media]['versions'][version];
-    streamVideo(videoPath, req, res);
+    
+    if(req.headers.connection === 'close'){
+        console.log("film")
+        res.sendFile(videoPath);
+    }else{
+        streamVideo(videoPath, req, res);
+    }
     // const videoSize = fs.statSync(videoPath).size;
 
     // let start = 0;
@@ -151,7 +155,12 @@ app.get("/series/:media/:season/:episode", function (req, res){
 
 
     const videoPath = data[media].path + data[media]['seasons'][season]['episodes'][episode].path;
-    streamVideo(videoPath, req, res);
+
+    if(req.headers.connection === 'close'){
+        res.sendFile(videoPath);
+    }else{
+        streamVideo(videoPath, req, res);
+    }
     // const videoSize = fs.statSync(videoPath).size;
 
     // let start = 0;
