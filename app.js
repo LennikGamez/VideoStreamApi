@@ -50,6 +50,13 @@ function isALink(url){
     return url.startsWith("http") || url.startsWith("https");
 }
 
+function loadVideo(videoPath, req, res){
+    if(req.headers.connection === 'close'){
+        res.sendFile(videoPath);
+    }else{
+        streamVideo(videoPath, req, res);
+    }
+}
 
 app.get('/reload', function(req, res){
     runPythonScript(res);
@@ -99,45 +106,10 @@ app.get("/poster/:media", function (req, res){
 app.get("/movie/:media/:version", function (req, res){
     const media = req.params.media;
     const version = req.params.version
-    const range = req.headers.range;
-    // if(!range){
-    //     res.status(400).send("Requires Range header");
-    // }
 
     const videoPath = data[media].path + data[media]['versions'][version];
     
-    if(req.headers.connection === 'close'){
-        console.log("film")
-        res.sendFile(videoPath);
-    }else{
-        streamVideo(videoPath, req, res);
-    }
-    // const videoSize = fs.statSync(videoPath).size;
-
-    // let start = 0;
-    // let end = 1;
-    // if (!(range == "bytes=0-1")){
-    //     const CHUNK_SIZE = 10**6;
-    //     start = parseInt(range.split('=')[1].split('-')[0]);
-    //     end = parseInt(range.split('-')[1]);
-        
-    //     if (Number.isNaN(end)){
-    //         end = Math.min(start + CHUNK_SIZE, videoSize -1);
-    //     }
-    // }
-
-    // const contentLength = end - start + 1;
-    // const headers = {
-    //     "Content-Range": `bytes ${start}-${end}/${videoSize}`,
-    //     "Accept-Ranges": "bytes",
-    //     "Content-Length": contentLength,
-    //     "Content-Type": "video/mp4"
-    // }
-    // res.writeHead(206, headers);
-
-    // const videoStream = fs.createReadStream(videoPath, { start, end });
-    // videoStream.pipe(res);
-
+    loadVideo(videoPath, req, res);
 });
 
 
@@ -148,45 +120,9 @@ app.get("/series/:media/:season/:episode", function (req, res){
     const season = req.params.season;
     const episode = req.params.episode;
 
-    // const range = req.headers.range;
-    // if(!range){
-    //     res.status(400).send("Requires Range header");
-    // }
-
-
     const videoPath = data[media].path + data[media]['seasons'][season]['episodes'][episode].path;
 
-    if(req.headers.connection === 'close'){
-        res.sendFile(videoPath);
-    }else{
-        streamVideo(videoPath, req, res);
-    }
-    // const videoSize = fs.statSync(videoPath).size;
-
-    // let start = 0;
-    // let end = 1;
-    // if (!(range == "bytes=0-1")){
-    //     const CHUNK_SIZE = 10**6;
-    //     start = parseInt(range.split('=')[1].split('-')[0]);
-    //     end = parseInt(range.split('-')[1]);
-        
-    //     if (Number.isNaN(end)){
-    //         end = Math.min(start + CHUNK_SIZE, videoSize -1);
-    //     }
-    // }
-
-    // const contentLength = end - start + 1;
-    // const headers = {
-    //     "Content-Range": `bytes ${start}-${end}/${videoSize}`,
-    //     "Accept-Ranges": "bytes",
-    //     "Content-Length": contentLength,
-    //     "Content-Type": "video/mp4"
-    // }
-    // res.writeHead(206, headers);
-
-    // const videoStream = fs.createReadStream(videoPath, { start, end });
-    // videoStream.pipe(res);
-
+    loadVideo(videoPath, req, res);
 });
 
 app.get('/subtitles/:media', function(req, res){
